@@ -34,17 +34,12 @@ int		print_str(va_list varlist, t_flags *flags)
 	char 	*str;
 	int 	char_printed;
 	int		len;
-	int		i;
 
-	i = -1;
 	char_printed = 0;
 	flags->zero = 0;
 	str = (char *)va_arg(varlist, char *);
 	if (!str)
-	{
-		str = ft_strdup("(null)");
 		len = 6;
-	}
 	else
 		len = ft_strlen(str);
 	if (flags->precision == 0)
@@ -54,11 +49,10 @@ int		print_str(va_list varlist, t_flags *flags)
 	flags->width -= len;
 	if (!flags->minus)
 		char_printed += print_field(flags);
-	while (++i < len)
-	{
-		ft_putchar(str[i]);
-		char_printed++;
-	}
+	if (!str)
+		char_printed += write(1, "(null)", len);
+	else
+		char_printed += write(1, str, len);
 	if (flags->minus)
 		char_printed += print_field(flags);
 	return (char_printed);

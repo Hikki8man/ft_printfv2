@@ -35,13 +35,19 @@ t_flags	init_struct(void)
 	return (flags);
 }
 
-int 	is_valid(const char **str, t_flags *flags, va_list varlist)
+int 	is_valid(const char **str, t_flags *flags, va_list varlist, int *char_printed)
 {
 	char *str_flags;
 	int i;
 
 	str_flags = (char *)*str;
 	i = 0;
+	if (*(str_flags + 1) == '%')
+	{
+		*char_printed += write(1, "%", 1);
+		*str += 2;
+		return (0);
+	}
 	while (is_flag(*(*str + i)))
 		i++;
 	(*str) += i;

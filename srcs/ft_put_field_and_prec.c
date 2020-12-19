@@ -12,7 +12,7 @@
 
 #include "../include/ft_printf.h"
 
-int 	print_field(t_flags *flags)
+int		print_field(t_flags *flags)
 {
 	int char_printed;
 
@@ -21,7 +21,7 @@ int 	print_field(t_flags *flags)
 	{
 		while (char_printed < flags->width)
 		{
-			write (1, "0", 1);
+			write(1, "0", 1);
 			char_printed++;
 		}
 	}
