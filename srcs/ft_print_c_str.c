@@ -1,6 +1,14 @@
-//
-// Created by Stellar on 18/12/2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_c_str.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchevet <jchevet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/19 17:37:46 by jchevet           #+#    #+#             */
+/*   Updated: 2020/12/19 17:37:46 by jchevet          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
@@ -32,8 +40,11 @@ int		print_str(va_list varlist, t_flags *flags)
 	char_printed = 0;
 	flags->zero = 0;
 	str = (char *)va_arg(varlist, char *);
-	if (!str && (flags->dot == 0 || flags->precision > 6 || flags->precision == -1))
+	if (!str)
+	{
+		str = ft_strdup("(null)");
 		len = 6;
+	}
 	else
 		len = ft_strlen(str);
 	if (flags->precision == 0)
@@ -43,9 +54,7 @@ int		print_str(va_list varlist, t_flags *flags)
 	flags->width -= len;
 	if (!flags->minus)
 		char_printed += print_field(flags);
-	if (!str && (flags->dot == 0 || flags->precision > 6 || flags->precision == -1))
-		char_printed += write(1, "(null)", 6);
-	while (++i < len && str)
+	while (++i < len)
 	{
 		ft_putchar(str[i]);
 		char_printed++;

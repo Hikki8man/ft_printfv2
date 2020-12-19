@@ -1,6 +1,14 @@
-//
-// Created by Stellar on 18/12/2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_p_u_x.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchevet <jchevet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/19 17:38:20 by jchevet           #+#    #+#             */
+/*   Updated: 2020/12/19 17:38:20 by jchevet          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
@@ -85,7 +93,7 @@ int 	print_p(va_list varlist, t_flags *flags)
 	if (!adress)
 	{
 		int_len = 0;
-		flags->width -= 5;
+		flags->width -= 3;
 		flags->precision = 0;
 	}
 	if (flags->precision > int_len){
@@ -105,7 +113,7 @@ int 	print_p(va_list varlist, t_flags *flags)
 	char_printed += print_precision(flags);
 
 	if (!adress)
-		char_printed += (write(1, "(nil)", 5));
+		char_printed += (write(1, "0x0", 3));
 	else
 		ft_putstr(to_print);
 
