@@ -46,24 +46,22 @@ int 	is_valid(const char **str, t_flags *flags, va_list varlist)
 		i++;
 	(*str) += i;
 	if (!is_type(**str))
-		return (0);
-	str_flags = ft_substr(str_flags, 0, i);
-	if (flags_parsing(flags, str_flags, varlist))
 	{
-		free(str_flags);
-		return (1);
+		*str += 1;
+		return (0);
 	}
-	*str += 1;
+	str_flags = ft_substr(str_flags, 0, i);
+	flags_parsing(flags, str_flags, varlist, i);
 	free(str_flags);
-	return (0);
+	return (1);
 }
 
-int 	flags_parsing(t_flags *flags, char *str_flags, va_list varlist)
+int 	flags_parsing(t_flags *flags, char *str_flags, va_list varlist, int end)
 {
 	int i;
 
 	i = 0;
-	while (str_flags[i])
+	while (i < end)
 	{
 		if (str_flags[i] >= '1' && str_flags[i] <= '9')
 			i += get_width(str_flags + i, flags, varlist);

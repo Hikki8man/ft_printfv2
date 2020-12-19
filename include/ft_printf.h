@@ -13,7 +13,7 @@
 #ifndef FT_PRINTF_H
 #define FT_PRINTF_H
 
-#include "libft.h"
+#include "../libft/libft.h"
 #include <unistd.h>
 #include <stdarg.h>
 
@@ -33,7 +33,7 @@ t_flags	init_struct(void);
 
 int 	is_flag(char c);
 int 	is_type(char c);
-int 	flags_parsing(t_flags *flags, char *str,va_list varlist);
+int 	flags_parsing(t_flags *flags, char *str,va_list varlist, int end);
 int 	is_valid(const char **str, t_flags *flags, va_list varlist);
 
 int 	get_precision(char *str_flags, t_flags *flags, va_list varlist);
