@@ -12,12 +12,12 @@
 
 #include "../include/ft_printf.h"
 
-void 	int_field(t_flags *flags, int *size, int *value)
+void	int_field(t_flags *flags, int *size, int *value)
 {
 	if (flags->precision == 0 && *value == 0)
 		*size = 0;
 	if (flags->zero == 1 && *value < 0)
-		write (1, "-", 1);
+		write(1, "-", 1);
 	if (flags->precision >= *size)
 	{
 		flags->width -= flags->precision;
@@ -35,12 +35,12 @@ void 	int_field(t_flags *flags, int *size, int *value)
 	}
 }
 
-int 	print_int(va_list varlist, t_flags *flags)
+int		print_int(va_list varlist, t_flags *flags)
 {
-	int 	size;
-	int 	value;
+	int		size;
+	int		value;
 	int		char_printed;
-	char 	*to_print;
+	char	*to_print;
 
 	char_printed = 0;
 	value = (int)va_arg(varlist, int);
@@ -55,9 +55,9 @@ int 	print_int(va_list varlist, t_flags *flags)
 	if (size > 0)
 	{
 		if (value < 0)
-			ft_putstr_fd(to_print + 1, 1);
+			ft_putstr(to_print + 1);
 		else
-			ft_putstr_fd(to_print, 1);
+			ft_putstr(to_print);
 	}
 	if (flags->minus)
 		char_printed += print_field(flags);

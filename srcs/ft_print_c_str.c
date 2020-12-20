@@ -15,7 +15,7 @@
 int		print_char(va_list varlist, t_flags *flags)
 {
 	int		char_printed;
-	char c;
+	char	c;
 
 	char_printed = 0;
 	flags->zero = 0;
@@ -31,8 +31,8 @@ int		print_char(va_list varlist, t_flags *flags)
 
 int		print_str(va_list varlist, t_flags *flags)
 {
-	char 	*str;
-	int 	char_printed;
+	char	*str;
+	int		char_printed;
 	int		len;
 
 	char_printed = 0;

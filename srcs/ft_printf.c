@@ -13,8 +13,9 @@
 #include "../include/ft_printf.h"
 
 // TODO: fix wrong output with '%' and not a valid type
+// TODO: handle errors, maybe add char_printed to prints functions to return -1 if fail
 
-int 	print(char c, va_list varlist, t_flags *flags)
+int		print(char c, va_list varlist, t_flags *flags)
 {
 	int char_printed;
 
@@ -48,22 +49,13 @@ int		ft_printf(const char *str, ...)
 		if (*str == '%' && *(str + 1) != '\0')
 		{
 			flags = init_struct();
-			if (*(str + 1) == '%')
-			{
-				char_printed += write(1, "%", 1);
-				str += 2;
-			}
-			else if (is_valid(&str, &flags, var_list, &char_printed))
-			{
-				char_printed += print(*str, var_list, &flags);
-				str++;
-			}
+			if (is_valid(&str, &flags, var_list))
+				char_printed += print(*str++, var_list, &flags);
+			else
+				char_printed += write(1, str++, 1);
 		}
 		else
-		{
-			char_printed += write(1, str, 1);
-			str++;
-		}
+			char_printed += write(1, str++, 1);
 	}
 	va_end(var_list);
 	return (char_printed);

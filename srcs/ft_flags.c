@@ -12,14 +12,16 @@
 
 #include "../include/ft_printf.h"
 
-int 	is_type(char c)
+int		is_type(char c)
 {
-	return (c == 'd' || c == 'i' || c == 'c' || c == 's' || c == 'u' || c == 'p' || c == 'x' || c == 'X');
+	return (c == 'd' || c == 'i' || c == 'c' || c == 's' || c == 'u' ||
+	c == 'p' || c == 'x' || c == 'X');
 }
 
-int 	is_flag(char c)
+int		is_flag(char c)
 {
-	return (c == '-' || (c >= '0' && c <= '9') || c == '.' || c == '*' || c == '%');
+	return (c == '-' || (c >= '0' && c <= '9') || c == '.' || c == '*' ||
+	c == '%');
 }
 
 t_flags	init_struct(void)
@@ -35,34 +37,30 @@ t_flags	init_struct(void)
 	return (flags);
 }
 
-int 	is_valid(const char **str, t_flags *flags, va_list varlist, int *char_printed)
+int		is_valid(const char **str, t_flags *flags, va_list varlist)
 {
-	char *str_flags;
-	int i;
+	char	*str_flags;
+	int		i;
 
 	str_flags = (char *)*str;
 	i = 0;
 	if (*(str_flags + 1) == '%')
 	{
-		*char_printed += write(1, "%", 1);
-		*str += 2;
-		return (0);
-	}
-	while (is_flag(*(*str + i)))
-		i++;
-	(*str) += i;
-	if (!is_type(**str))
-	{
 		*str += 1;
 		return (0);
 	}
+	while (is_flag(*(str_flags + i)))
+		i++;
+	if (!is_type(*(str_flags + i)))
+		return (0);
+	*str += i;
 	str_flags = ft_substr(str_flags, 0, i);
 	flags_parsing(flags, str_flags, varlist, i);
 	free(str_flags);
 	return (1);
 }
 
-int 	flags_parsing(t_flags *flags, char *str_flags, va_list varlist, int end)
+int		flags_parsing(t_flags *flags, char *str_flags, va_list varlist, int end)
 {
 	int i;
 
@@ -73,7 +71,7 @@ int 	flags_parsing(t_flags *flags, char *str_flags, va_list varlist, int end)
 			i += get_width(str_flags + i, flags, varlist);
 		else if (str_flags[i] == '*')
 			get_width(str_flags + i, flags, varlist);
-		else if (str_flags[i] == '.' )
+		else if (str_flags[i] == '.')
 		{
 			flags->dot = 1;
 			flags->precision = 0;

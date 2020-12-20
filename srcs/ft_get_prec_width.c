@@ -25,7 +25,7 @@ int		int_len(int nb)
 	return (i);
 }
 
-int 	get_precision(char *str_flags, t_flags *flags, va_list varlist)
+int		get_precision(char *str_flags, t_flags *flags, va_list varlist)
 {
 	if (*str_flags == '*')
 	{

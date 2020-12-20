@@ -28,7 +28,7 @@ void	field_sum(t_flags *flags, int *size)
 
 int		print_uint(va_list varlist, t_flags *flags)
 {
-	unsigned int 	value;
+	unsigned int	value;
 	int				size;
 	int				char_printed;
 	char			*to_print;
@@ -53,7 +53,7 @@ int		print_uint(va_list varlist, t_flags *flags)
 
 int		print_hex(va_list varlist, t_flags *flags)
 {
-	unsigned int 	value;
+	unsigned int	value;
 	int				size;
 	int				char_printed;
 	char			*to_print;
@@ -84,7 +84,7 @@ int		print_p(va_list varlist, t_flags *flags)
 	unsigned long long	int	value;
 	int						size;
 	int						char_printed;
-	char 					*to_print;
+	char					*to_print;
 
 	char_printed = 0;
 	value = va_arg(varlist, unsigned long long int);
