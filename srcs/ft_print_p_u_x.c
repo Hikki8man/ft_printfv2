@@ -44,7 +44,7 @@ int		print_uint(va_list varlist, t_flags *flags)
 		char_printed += print_field(flags);
 	char_printed += print_precision(flags);
 	if (size > 0)
-		ft_putstr_fd(to_print, 1);
+		ft_putstr(to_print);
 	if (flags->minus)
 		char_printed += print_field(flags);
 	free(to_print);

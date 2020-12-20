@@ -43,6 +43,8 @@ int		ft_printf(const char *str, ...)
 	va_list	var_list;
 
 	char_printed = 0;
+	if (!str)
+		return (-1);
 	va_start(var_list, str);
 	while (*str)
 	{
@@ -54,6 +56,8 @@ int		ft_printf(const char *str, ...)
 			else
 				char_printed += write(1, str++, 1);
 		}
+		else if (*str == '%' && *(str + 1) == '\0')
+			return (-1);
 		else
 			char_printed += write(1, str++, 1);
 	}

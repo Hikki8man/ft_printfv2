@@ -240,8 +240,12 @@ int main(void) {
 	char	*u = "-0";
 
 	printf("Test %d\n", z++);
-	ft_printf(" --- Return : %d\n", ft_printf("%%%dBonjour%", 2));
-	printf(" --- Return : %d\n", printf("%%%dBonjour%", 2));
+	ft_printf(" --- Return : %d\n", ft_printf("%", 2));
+	printf(" --- Return : %d\n", printf("%", 2));
+
+	printf("Test %d\n", z++);
+	ft_printf(" --- Return : %d\n", ft_printf("%Bonjour%%", 2));
+	printf(" --- Return : %d\n", printf("%Bonjour%%", 2));
 
 
 	printf("Test %d\n", z++);
